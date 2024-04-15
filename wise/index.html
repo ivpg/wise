@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="WISE: Whitebox Image Stylization by Example-based Learning.">
+  <meta name="keywords" content="WISE, White-box, Image Stylization, Image generation, Learning, Neural Style Transfer, Style Transfer, NST, xDoG, watercolor, oilpaint, stylization, filtering">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WISE: Whitebox Image Stylization by Example-based Learning</title>
+
+<!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XHJQ1V9HEG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XHJQ1V9HEG');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <!-- <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css"> -->
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./static/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./static/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./static/images/favicon/favicon-16x16.png">
+  <link rel="manifest" type="data" href="./static/images/favicon/site.webmanifest">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <!-- <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script> -->
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+<!-- 
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">WISE: Whitebox Image Stylization by Example-based Learning</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.de/citations?user=wAVKdLcAAAAJ&hl=de">Winfried Lötzsch</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.researchgate.net/profile/Max-Reimann">Max Reimann</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.researchgate.net/profile/Martin-Buessemeyer">Martin Büßemeyer</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://asemmo.github.io/">Amir Semmo</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="hhttps://hpi.de/forschung/fachgebiete/computergrafische-systeme.html">Jürgen Döllner</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.researchgate.net/profile/Matthias-Trapp-2">Matthias Trapp</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Hasso Plattner Institute, University of Potsdam, Germany </span>
+            <span class="author-block"><sup>2</sup>Digitalmasterpieces GmbH, Germany</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>equal contribution</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">In ECCV 2022</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2207.14606"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2207.14606"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="https://ivpg.hpi3d.de/wise/material/poster_eccv22.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Poster</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/GSVI26DDQrc"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/winfried-ripken/wise"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/MaxReimann/Whitebox-Style-Transfer-Editing"
+                   class="external-link button is-normal is-rounded is-dark" style="color:red">
+                  <span class="icon">
+                      <i class="fas fa-palette" style="color:yellow"></i>
+                  </span>
+                  <span>NEW: DEMO</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <figure>
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="static/images/WISE_Whitebox_Image_Stylization_by_Example_based_Learning_teaser.mp4"
+                type="video/mp4" alt="Editing in WISE: Whitebox Image Stylization by Example-based Learning">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <figcaption> <span class="dwise">WISE</span> transfers styles to algorithmic stylization filters. 
+        
+        It enables global and local editing by adjusting semantically meaningful (whitebox) parameters such as contours or splattering amount.
+        </figcaption>
+      </h2>
+    </figure>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Image-based artistic rendering can synthesize a variety of expressive styles using algorithmic image filtering. 
+            In contrast to deep learning-based methods, these heuristics-based filtering techniques can operate on high-resolution images, 
+            are interpretable, and can be parameterized according to various design aspects. 
+            However, adapting or extending these techniques to produce new styles is often a tedious and error-prone task that requires expert knowledge. 
+          </p>
+          <p>
+            We propose a new paradigm to alleviate this problem: 
+            implementing algorithmic image filtering techniques as differentiable operations that can learn parametrizations aligned to certain reference styles. 
+            To this end, we present <span class="dwise">WISE</span>, an example-based image-processing system that can handle a multitude of stylization techniques, 
+            such as watercolor, oil or cartoon stylization, within a common framework. 
+            By training parameter prediction networks for global and local filter parameterizations, we can simultaneously adapt effects to 
+            reference styles and image content, e.g., to enhance facial features. 
+          </p>
+          <p>
+            Our method can be optimized in a style-transfer framework or learned in a generative-adversarial setting for image-to-image translation. 
+            We demonstrate that jointly training an XDoG filter and a CNN for postprocessing can achieve comparable results to a state-of-the-art GAN-based method.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/GSVI26DDQrc?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+    
+    
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Applications</h2>
+
+        <h3 class="title is-4">Parametric Style Transfer</h3> 
+        <div class="content has-text-justified">
+          <p>
+            <span class="dwise">WISE</span> can optimize the parameters of a variety of algorithmic stylization effects such as watercolor or oil paint to match reference styles. 
+            These can then be further edited globally and locally by tuning parameters such as amount of contours, or bump-mapping scale.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+            <div class="columns-5 w-row">
+              <img src="static/images/styletransfer_results.jpg" style="width:95%; margin-right:0px; margin-top:0px;" alt="Parametric Style Transfer for oilpaint and watercolor in WISE">
+            </div>
+        </div>
+        <!-- Parametric Style Transfer video. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <!-- <h2 class="title is-3">Parametric Style Transfer</h2> -->
+            <div class="publication-video">
+              <iframe src="https://www.youtube.com/embed/wIndN7cr0PE?rel=0&amp;showinfo=0"
+                      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <!--/ Parametric Style Transfer video. -->
+        <br/>
+
+        <h3 class="title is-4">Image-to-Image Translation</h3>
+        <div class="content has-text-justified">
+          <p>
+            <span class="dwise">WISE</span> can train Parameter Prediction Networks (PPNs) to predict stylization parameters for image to image translation tasks. 
+            We show this by training a PPN for the extended Difference of Gaussians (xDog) [1] effect to match black and white hand-drawn paintings on the APDrawing [2] dataset.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <div class="columns-5 w-row">
+            <img src="static/images/xdog_apdrawing.jpg" style="width:95%; margin-right:0px; margin-top:0px;" alt="Using xDoG and PPN prediction in WISE: Whitebox Image Stylization by Example-based Learning">
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            As simple filters such as the xDoG do not have the capacity to create arbitrary stylizations, we add a postprocessing network which is trained together with the PPN. 
+            This approach performs on-par with GAN-based state-of-the-art methods, while reducing model complexity and retaining a degree of editability.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{loetzsch2022wise,
+  author    = {Lötzsch, Winfried and Reimann, Max and Büßemeyer, Martin and Semmo, Amir and Döllner, Jürgen and Trapp, Matthias},
+  title     = {WISE: Whitebox Image Stylization by Example-based Learning},
+  journal   = {ECCV},
+  year      = {2022},
+}</code></pre>
+  </div>
+</section>
+
+<!-- acknowledgements and logos -->
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-3">Acknowledgements</h3>
+        <p>
+        Our work "WISE: Whitebox Image Stylization by Example-based Learning" was partially funded by the German Federal Ministry of Education and Research (BMBF) through grants 01IS15041 – “mdViPro” and 01IS19006 – “KI-Labor ITSE”.</p>
+        <br/>
+        <div class="columns is-variable is-flex is-vcentered is-centered is-8">
+          <div class="column is-3">
+            <figure class="image is-5by3">
+              <a href="https://hpi.de/"><img src="./static/images/logos/hpi_logo.png" alt="Hasso-Plattner-Institut"  ></a>
+            </figure>
+          </div>
+          <div class="column is-3">
+            <figure class="image">
+              <a href="https://www.digitalmasterpieces.com/"><img src="./static/images/logos/dm_logo.png" alt="Digital Masterpieces"  /></a>
+            </figure>
+          </div>
+          <div class="column is-3">
+            <figure class="image is-16by9">
+              <a href="https://www.bmbf.de/"><img src="./static/images/logos/bmbf_logo.png" alt="BMBF: Bundesministerium für Bildung und Forschung"  ></a>
+            </figure>
+          </div>
+          <div class="column is-3 has-text-centered">
+            <figure class="image is-128x128 is-inline-block">
+              <a href="https://www.uni-potsdam.de/"><img src="./static/images/logos/uni_potsdam_logo.png" alt="Universität Potsdam" ></a>
+             </figure>
+          </div>
+        </div>
+      
+      
+
+    </div>
+  </div>  
+
+
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template adapted from <a href="https://nerfies.github.io">nerfies.github.io</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
